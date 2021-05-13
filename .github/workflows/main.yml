@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Gradlew Clean Build
-        run: gradlew clean build
+        run: ./gradlew clean build
         
       - name: Gradlew Run
-        run: gradlew :app:run
+        run: ./gradlew :app:run
