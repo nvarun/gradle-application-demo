@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1.0.3    
+      - name: Copy Artifacts
+        run: cp -r $GITHUB_WORKSPACE $RUNNER_TEMP
 
   build_app_java:
     name: Java Application
@@ -27,8 +29,8 @@ jobs:
     steps:
       - name: List Files
         run: |
-          find $RUNNER_WORKSPACE -type d
-          find $RUNNER_TOOL_CACHE -type d
+          find $RUNNER_TEMP -type f
+          find $RUNNER_WORKSPACE -type f
       - name: Build Artifacts
         run: ./gradlew :app-java:build
       - name: Execute Main Class
