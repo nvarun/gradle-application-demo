@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: repo-gradle-distro
-          path: ${{ env.HOME }}/.gradle/wrapper/dists/
+          path: ~/.gradle/wrapper/dists/
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2.2.3
         with:
