@@ -69,7 +69,7 @@ jobs:
      needs: [build_app_java, build_app_scala]
      runs-on: ubuntu-20.04
      steps:
-       - name: 'Cleanup Cache'
+       - name: Cleanup Cache
          run: |
            rm -f ~/.gradle/caches/modules-2/modules-2.lock
            rm -f ~/.gradle/caches/modules-2/gc.properties
