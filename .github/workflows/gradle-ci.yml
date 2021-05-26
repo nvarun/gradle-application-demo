@@ -37,7 +37,7 @@ jobs:
       - name: Build Artifacts
         run: |
           cd ${{ github.workspace}} 
-          find $GITHUB_WORKSPACE | xargs ls -ld
+          chmod u+x gradlew
           ./gradlew :app-java:build
       - name: Execute Main Class
         run: ./gradlew :app-java:run
