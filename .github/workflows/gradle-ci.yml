@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1.0.3    
+      - name: Display Environment Variables
+        run: env
 
   build_app_java:
     name: Java Application
@@ -30,7 +32,7 @@ jobs:
       - name: Execute Main Class
         run: ./gradlew :app-java:run
 
-  build_app_s:
+  build_app_scala:
     name: Scala Application
     needs: checkout
     runs-on: ubuntu-20.04
