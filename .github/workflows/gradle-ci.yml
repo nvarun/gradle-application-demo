@@ -35,7 +35,9 @@ jobs:
         with:
           name: repo-clone
       - name: Build Artifacts
-        run: ./gradlew :app-java:build
+        run: |
+          cd ${{ github.workspace}} 
+          ./gradlew :app-java:build
       - name: Execute Main Class
         run: ./gradlew :app-java:run
 
