@@ -21,14 +21,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1.0.3
       - name: Gradle Cache
-        uses: actions/cache@v2
+        uses: actions/upload-artifact@v2.2.3
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          name: repo-gradle-cache
+          path: ~/.gradle
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -44,7 +40,10 @@ jobs:
         uses: actions/download-artifact@v2.0.9
         with:
           name: repo-clone
-
+      - name: Gradle Cache
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: repo-gradle-cache
       - name: Build Artifacts
         run: chmod u+x gradlew && ./gradlew :app-java:build
 
@@ -64,13 +63,4 @@ jobs:
         run: chmod u+x gradlew && ./gradlew :app-scala:build
       - name: Execute Main Class
         run: ./gradlew :app-scala:run
-
-   cleanup_cache:
-     needs: [build_app_java, build_app_scala]
-     runs-on: ubuntu-20.04
-     steps:
-       - name: Cleanup Cache
-         run: |
-           rm -f ~/.gradle/caches/modules-2/modules-2.lock
-           rm -f ~/.gradle/caches/modules-2/gc.properties
 
