@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: repo-clone
-          path: $GITHUB_WORKSPACE
+          path: ${{ github.workspace }}
       
   build_app_java:
     name: Java Application
