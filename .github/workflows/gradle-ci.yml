@@ -27,7 +27,7 @@ jobs:
           path: ${{ github.workspace }}
       
   build_app_java:
-    name: Java Application
+    name: Gradle App Demo - Java
     needs: checkout
     runs-on: ubuntu-20.04
     steps:
@@ -36,9 +36,21 @@ jobs:
         with:
           name: repo-clone
       - name: Build Artifacts
-        run: |
-          chmod u+x gradlew
-          ./gradlew :app-java:build
+        run: chmod u+x gradlew && ./gradlew :app-java:build
       - name: Execute Main Class
         run: ./gradlew :app-java:run
+
+  build_app_scala:
+    name: Gradle App Demo - Scala
+    needs: checkout
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Retrieve Artifacts
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: repo-clone
+      - name: Build Artifacts
+        run: chmod u+x gradlew && ./gradlew :app-scala:build
+      - name: Execute Main Class
+        run: ./gradlew :app-scala:run
 
