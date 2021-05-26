@@ -1,1 +1,1 @@
-# gradle-scala-app-demo
+# gradle-application-demo
