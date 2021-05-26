@@ -37,16 +37,8 @@ jobs:
       - name: Build Artifacts
         run: |
           cd ${{ github.workspace}} 
+          find $GITHUB_WORKSPACE | xargs ls -ld
           ./gradlew :app-java:build
       - name: Execute Main Class
         run: ./gradlew :app-java:run
 
-  build_app_scala:
-    name: Scala Application
-    needs: checkout
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Build Artifacts
-        run: ./gradlew :app-scala:build
-      - name: Execute Main Class
-        run: ./gradlew :app-scala:run
