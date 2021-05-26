@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1.0.3
+      - name: Gradle Properties
+        run: ./gradlew properties
       - name: Gradle Distro
         uses: actions/upload-artifact@v2.2.3
         with:
