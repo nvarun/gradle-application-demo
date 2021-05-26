@@ -20,11 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: gradle/wrapper-validation-action@v1.0.3
-      - name: Gradle Cache
+      - name: Gradle Distro
         uses: actions/upload-artifact@v2.2.3
         with:
-          name: repo-gradle-cache
-          path: ~/.gradle
+          name: repo-gradle-distro
+          path: ${{ env.HOME }}/.gradle/wrapper/dists/
       - name: Publish Artifacts
         uses: actions/upload-artifact@v2.2.3
         with:
@@ -40,10 +40,10 @@ jobs:
         uses: actions/download-artifact@v2.0.9
         with:
           name: repo-clone
-      - name: Gradle Cache
+      - name: Gradle Distro
         uses: actions/download-artifact@v2.0.9
         with:
-          name: repo-gradle-cache
+          name: repo-gradle-distro
       - name: Build Artifacts
         run: chmod u+x gradlew && ./gradlew :app-java:build
 
