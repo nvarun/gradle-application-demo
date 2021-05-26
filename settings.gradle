@@ -8,4 +8,6 @@
  */
 
 rootProject.name = 'gradle-application-demo'
+
+include('app-java')
 include('app-scala')
