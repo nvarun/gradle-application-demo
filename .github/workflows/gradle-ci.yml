@@ -18,19 +18,22 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: gradle/wrapper-validation-action@v1.0.3    
-      - name: Copy Artifacts
-        run: cp -r $GITHUB_WORKSPACE $RUNNER_TEMP
-
+      - uses: gradle/wrapper-validation-action@v1.0.3
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: repo-clone
+          path: $GITHUB_WORKSPACE
+      
   build_app_java:
     name: Java Application
     needs: checkout
     runs-on: ubuntu-20.04
     steps:
-      - name: List Files
-        run: |
-          find $RUNNER_TEMP -type f
-          find $RUNNER_WORKSPACE -type f
+      - name: Retrieve Artifacts
+        uses: actions/download-artifact@v2.0.9
+        with:
+          name: repo-clone
       - name: Build Artifacts
         run: ./gradlew :app-java:build
       - name: Execute Main Class
